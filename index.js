@@ -67,3 +67,34 @@ app.get("/", (req, res) => {
 
     //   res.json({ message: "result" });
 });
+
+
+app.get("/api", (req, res) => {
+    console.log("here");
+
+    let blogs = []
+    db.collection('blogs')
+        .find()
+        .sort({ _id: -1 })
+        .forEach(blog => blogs.push(blog))
+        .then((response) => {
+            console.log("in .then response");
+            res.json(blogs)
+            console.log(blogs);
+            // res.render('index', { articles: blogs })
+        })
+        .catch((err) => {
+            // res.status(500).json({ error: 'could not get data' })
+        })
+
+    // fetch1()
+    // async function fetch1() {
+    //     // const result = await axios('https://randomuser.me/api/')
+    //     // console.log("result2");
+    //     fetch('https://randomuser.me/api/')
+    //         .then((response) => response.json())
+    //         .then((data) => res.send(data));
+    // }
+
+    //   res.json({ message: "result" });
+});
