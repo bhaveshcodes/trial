@@ -56,7 +56,7 @@ console.log("here");
         // console.log("result2");
         fetch('https://randomuser.me/api/')
             // .then((response) => response.json())
-            .then((data) => res.send("data"));
+            .then((data) => res.send(data));
     }
 
     //   res.json({ message: "result" });
