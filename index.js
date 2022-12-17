@@ -1,8 +1,13 @@
- const express = require('express')
+// from delete (Local File Reference)
+const express = require('express')
 const app = express()
 const axios = require('axios')
 const bodyParser = require('body-parser');
 
+const cors = require('cors')
+app.use(cors({
+    origin: "*",
+}))
 
 //mongodb
 const { connectToDb, getDb } = require('./db')
@@ -12,7 +17,7 @@ const { ObjectId } = require('mongodb')
 let db
 connectToDb((err) => {
     if (!err) {
-        const PORT=process.env.PORT || 9000
+        const PORT = process.env.PORT || 9000
         app.listen(PORT, () => {
             console.log("running on port 9000");
         })
@@ -34,8 +39,9 @@ app.use(express.json())
 // });
 
 app.get("/", (req, res) => {
-console.log("here");
-     let blogs = []
+    console.log("here");
+
+    let blogs = []
     db.collection('blogs')
         .find()
         .sort({ _id: -1 })
