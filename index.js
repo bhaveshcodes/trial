@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
     console.log("here");
 
     let blogs = []
-    db.collection('comments')
+    db.collection('blogs')
         .find()
         .sort({ _id: -1 })
         .forEach(blog => blogs.push(blog))
@@ -73,7 +73,7 @@ app.get("/api", (req, res) => {
     console.log("here");
 
     let blogs = []
-    db.collection('comments')
+    db.collection('blogs')
         .find()
         .sort({ _id: -1 })
         .forEach(blog => blogs.push(blog))
